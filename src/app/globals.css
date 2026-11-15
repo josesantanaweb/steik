@@ -19,7 +19,7 @@
   --surface: #141414;
   --foreground: #fff;
   --body: #55657E;
-  --stroke: #282830;
+  --stroke: rgb(51 51 51 / 50%);
   --primary: #DEFB32;
   --secondary: #98ED20;
   --success: #19EBB6;
