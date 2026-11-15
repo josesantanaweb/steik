@@ -4,4 +4,7 @@ export const ASSETS = {
     LOGO_SMALL: "/images/logo-small.svg",
     GOOGLE: "/images/google.png",
   },
+  DATA: {
+    TEAMS: "/teams/teams.json",
+  },
 };

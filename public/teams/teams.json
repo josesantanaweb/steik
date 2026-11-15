@@ -1,0 +1,38 @@
+[
+  {
+    "id": "real-madrid",
+    "name": "Real Madrid",
+    "league": "LA_LIGA",
+    "logo": "/images/teams/real-madrid.png"
+  },
+  {
+    "id": "bayern-munich",
+    "name": "Bayern Múnich",
+    "league": "BUNDESLIGA",
+    "logo": "/images/teams/bayern-munich.png"
+  },
+  {
+    "id": "borussia-dortmund",
+    "name": "Borussia Dortmund",
+    "league": "BUNDESLIGA",
+    "logo": "/images/teams/borussia-dortmund.png"
+  },
+  {
+    "id": "arsenal",
+    "name": "Arsenal",
+    "league": "PREMIER_LEAGUE",
+    "logo": "/images/teams/arsenal.png"
+  },
+  {
+    "id": "manchester-city",
+    "name": "Manchester City",
+    "league": "PREMIER_LEAGUE",
+    "logo": "/images/teams/manchester-city.png"
+  },
+  {
+    "id": "roma",
+    "name": "Roma",
+    "league": "SERIE_A",
+    "logo": "/images/teams/roma.png"
+  }
+]

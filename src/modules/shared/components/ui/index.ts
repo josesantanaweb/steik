@@ -2,6 +2,8 @@ export * from "./logo";
 export * from "./avatar";
 export * from "./input";
 export * from "./button";
+export * from "./pill";
+export * from "./favorite-button";
 export * from "./badge";
 export * from "./slider";
 export * from "./select";

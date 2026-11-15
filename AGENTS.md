@@ -211,7 +211,7 @@ export type BetStatus = (typeof BetStatus)[keyof typeof BetStatus];
 
 Entities requested for the MVP:
 
-- **Team**: name, league, crest URL, `isFavorite`, optional external id for the football API. Loaded manually.
+- **Team**: name, league, logo URL, `isFavorite`, optional external id for the football API. Loaded manually.
 - **Match**: teams, kickoff date/time, league, status, result. Upcoming matches of favourite teams, cached from the football API.
 - **Bet**: optional `matchId`, market, selection, odds, stake, status, `profit` (`won = stake × (odds − 1)`, `lost = −stake`, `void = 0`), notes.
 - **Bankroll movement** (optional): deposits and withdrawals to compute real balance.
