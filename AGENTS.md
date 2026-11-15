@@ -19,6 +19,22 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ---
 
+## Code graph (graphify) — query before reading files
+
+`graphify-out/graph.json` is a persistent knowledge graph of this repo (modules, components, docs, dependencies). Answer questions about structure, ownership or "where is X" from the graph instead of grepping the whole tree — it returns a few hundred tokens instead of thousands.
+
+| Command | Purpose |
+|---|---|
+| `graphify query "<question>" --budget 800` | Tokens-bounded answer from the graph |
+| `graphify path "A" "B"` | Shortest path between two symbols |
+| `graphify explain "<node>"` | Plain-language explanation of a node |
+| `graphify update` | Re-index only new/changed files (no LLM, free) |
+| `graphify export html` | Regenerate `graphify-out/graph.html` |
+
+Use it first for exploration; open real files only to read the code you are about to edit.
+
+---
+
 ## Project: Steik
 
 **Steik** is a personal betting tracker: log bets (won / lost / pending / void), follow stats and bankroll, track favourite football teams and their upcoming matches. It is a **mobile-first PWA** (installable from the browser, no app store).
