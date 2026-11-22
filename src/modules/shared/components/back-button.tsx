@@ -9,7 +9,7 @@ export const BackButton = (): ReactElement => {
 
   return (
     <button
-      className="cursor-pointer text-white"
+      className="shrink-0 cursor-pointer text-white"
       onClick={() => router.back()}
       aria-label="Volver"
     >

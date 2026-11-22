@@ -4,5 +4,6 @@ export * from "./auth-guard";
 export * from "./guest-guard";
 export * from "./query-provider";
 export * from "./back-button";
+export * from "./page-title";
 export * from "./search-input";
 export * from "./tabs";

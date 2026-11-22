@@ -22,7 +22,8 @@ export const TeamLogo = ({
     <span
       className={cn(
         "border-stroke bg-canvas flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-full border",
-        className,
+        showImage ? 'border-transparent' : "border-stroke",
+        className
       )}
     >
       {showImage ? (
