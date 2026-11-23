@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
+import { ROUTES } from "@/constants";
 import { MATCH_LEAGUE_LOGOS } from "@/modules/matches/types";
 import { getFakeMatches } from "@/modules/matches/utils";
 import { MatchCard } from "./match-card";
@@ -56,6 +57,16 @@ describe("MatchCard", () => {
       screen.queryByRole("img", { name: match.competition }),
     ).not.toBeInTheDocument();
     expect(screen.getByText(match.competition)).toBeInTheDocument();
+  });
+
+  it("links to the match detail page", () => {
+    render(
+      <MatchCard match={match} isFavorite={false} onToggleFavorite={vi.fn()} />,
+    );
+
+    expect(
+      screen.getByRole("link", { name: "Ver detalle de Real Madrid vs Roma" }),
+    ).toHaveAttribute("href", ROUTES.MATCH_DETAIL(match.id));
   });
 
   it("reflects the favorite state", () => {

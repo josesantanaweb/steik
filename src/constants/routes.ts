@@ -3,6 +3,7 @@ export const ROUTES = {
   TEAMS: "/teams",
   TEAM_DETAIL: (id: string) => `/teams/${id}`,
   MATCHES: "/matches",
+  MATCH_DETAIL: (id: string) => `/matches/${id}`,
   HISTORY: "/history",
   NEW_BET: "/bets/new",
   LOGIN: "/login",

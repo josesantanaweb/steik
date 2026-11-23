@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
+import { ROUTES } from "@/constants";
 import { getFakeUpcomingMatches } from "@/modules/matches/utils";
 import { UpcomingMatchCard } from "./upcoming-match-card";
 
@@ -38,6 +39,20 @@ describe("UpcomingMatchCard", () => {
     expect(
       screen.getByRole("button", { name: "Cuota 2: 4.20" }),
     ).toBeInTheDocument();
+  });
+
+  it("links to the match detail page", () => {
+    render(
+      <UpcomingMatchCard
+        match={match}
+        isFavorite={false}
+        onToggleFavorite={vi.fn()}
+      />,
+    );
+
+    expect(
+      screen.getByRole("link", { name: "Ver detalle de Real Madrid vs Roma" }),
+    ).toHaveAttribute("href", ROUTES.MATCH_DETAIL(match.id));
   });
 
   it("reflects the favorite state", () => {
