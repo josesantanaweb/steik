@@ -34,7 +34,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {label && (
             <span
               className={cn(
-                "text-sm font-bold uppercase",
+                "text-sm font-semibold uppercase",
                 error ? "text-error" : "text-white"
               )}
             >

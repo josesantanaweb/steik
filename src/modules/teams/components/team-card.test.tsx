@@ -51,6 +51,16 @@ describe("TeamCard", () => {
     ).toHaveAttribute("aria-pressed", "true");
   });
 
+  it("links to the team detail page", () => {
+    render(
+      <TeamCard team={team} isFavorite={false} onToggleFavorite={vi.fn()} />,
+    );
+
+    expect(
+      screen.getByRole("link", { name: "Ver detalle de Arsenal" }),
+    ).toHaveAttribute("href", "/teams/arsenal");
+  });
+
   it("calls onToggleFavorite with the team id", () => {
     const onToggleFavorite = vi.fn();
     render(

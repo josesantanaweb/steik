@@ -12,3 +12,6 @@ export * from "./checkbox";
 export * from "./radio-option";
 export * from "./textarea";
 export * from "./date-picker";
+export * from "./stat-box";
+export * from "./stat-grid";
+export * from "./progress-bar";

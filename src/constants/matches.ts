@@ -24,4 +24,3 @@ export const MATCH_MONTH_LABELS = [
 ] as const;
 
 export const MATCH_TODAY_LABEL = "HOY";
-export const MATCHES_PAGE_TITLE = "Próximos partidos";

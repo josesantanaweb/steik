@@ -25,7 +25,7 @@ export const Balance = ({
     >
       <span
         aria-hidden="true"
-        className="bg-stroke text-foreground flex size-8 shrink-0 items-center justify-center rounded-full text-lg font-bold"
+        className="bg-stroke text-foreground flex size-8 shrink-0 items-center justify-center rounded-full text-lg font-semibold"
       >
         $
       </span>

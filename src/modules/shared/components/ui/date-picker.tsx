@@ -73,7 +73,7 @@ export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
           {label && (
             <span
               className={cn(
-                "text-sm font-bold uppercase",
+                "text-sm font-semibold uppercase",
                 error ? "text-error" : "text-white"
               )}
             >

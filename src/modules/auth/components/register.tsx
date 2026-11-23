@@ -134,7 +134,7 @@ const RegisterContent = (): ReactElement => {
         <Logo />
 
         <div className="flex w-full flex-col items-start">
-          <h3 className="text-xl font-bold text-white">Registra tu cuenta.</h3>
+          <h3 className="text-xl font-semibold text-white">Registra tu cuenta.</h3>
           <p className="text-body text-base">
             Estamos encantados de tenerte con nosotros.
           </p>
@@ -201,14 +201,14 @@ const RegisterContent = (): ReactElement => {
               </p>
             </div>
             <Button variant="secondary" type="button" onClick={loginWithGoogle}>
-              <span className="text-base font-bold">G</span>
+              <span className="text-base font-semibold">G</span>
               Regístrate con Google
             </Button>
             <div className="flex items-center justify-center gap-2.5">
               <p className="text-base text-white">¿Ya tienes cuenta?</p>
               <Link
                 href={ROUTES.LOGIN}
-                className="text-base font-bold text-white"
+                className="text-base font-semibold text-white"
               >
                 Inicia sesión
               </Link>

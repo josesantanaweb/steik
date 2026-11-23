@@ -3,3 +3,4 @@ export * from "./routes";
 export * from "./assets";
 export * from "./navigation";
 export * from "./matches";
+export * from "./page-titles";

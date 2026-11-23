@@ -73,3 +73,34 @@ export const getFakeMatches = (): Match[] => [
     odds: { home: 2.4, draw: 3.1, away: 2.9 },
   },
 ];
+
+/** Próximos partidos de prueba para el detalle de equipo. */
+export const getFakeUpcomingMatches = (): Match[] => [
+  {
+    id: "rm-roma-upcoming",
+    league: "LA_LIGA",
+    competition: "La Liga",
+    homeTeam: TEAMS.realMadrid,
+    awayTeam: TEAMS.roma,
+    kickoff: new Date(2026, 11, 2, 21, 0).toISOString(),
+    odds: { home: 1.85, draw: 3.4, away: 4.2 },
+  },
+  {
+    id: "arsenal-rm-upcoming",
+    league: "LA_LIGA",
+    competition: "La Liga",
+    homeTeam: TEAMS.arsenal,
+    awayTeam: TEAMS.realMadrid,
+    kickoff: new Date(2026, 11, 6, 18, 30).toISOString(),
+    odds: { home: 2.7, draw: 3.2, away: 2.4 },
+  },
+  {
+    id: "rm-dortmund-upcoming",
+    league: "LA_LIGA",
+    competition: "La Liga",
+    homeTeam: TEAMS.realMadrid,
+    awayTeam: TEAMS.dortmund,
+    kickoff: new Date(2026, 11, 10, 20, 45).toISOString(),
+    odds: { home: 1.65, draw: 3.8, away: 5.1 },
+  },
+];

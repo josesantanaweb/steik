@@ -36,7 +36,7 @@ export const TeamLogo = ({
           className="size-full object-contain p-1"
         />
       ) : (
-        <span aria-hidden="true" className="text-sm font-bold text-white">
+        <span aria-hidden="true" className="text-sm font-semibold text-white">
           {initials}
         </span>
       )}

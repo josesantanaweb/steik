@@ -2,6 +2,7 @@
 
 import type { ReactElement } from "react";
 import { Search } from "lucide-react";
+import { PAGE_TITLES } from "@/constants";
 import { PageTitle } from "@/modules/shared/components/page-title";
 import { cn } from "@/modules/shared/utils/cn";
 import { TeamsSearchBar } from "./teams-search-bar";
@@ -15,7 +16,7 @@ interface TeamsTitleBarProps {
 }
 
 export const TeamsTitleBar = ({
-  title = "Lista de equipos",
+  title = PAGE_TITLES.TEAMS,
   isSearchOpen = false,
   onSearchToggle,
   searchValue = "",

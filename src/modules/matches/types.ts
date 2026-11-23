@@ -32,7 +32,7 @@ export type MatchCompetitionLeague = Exclude<
 
 export const MATCH_LEAGUE_LOGOS: Record<MatchCompetitionLeague, string> = {
   PREMIER_LEAGUE: "/images/leagues/premier_league.png",
-  LA_LIGA: "/images/leagues/la_liga.png",
+  LA_LIGA: "/images/leagues/la-liga.png",
   SERIE_A: "/images/leagues/serie_a.png",
   BUNDESLIGA: "/images/leagues/bundesliga.png",
   LIGUE_1: "/images/leagues/ligue_1.png",

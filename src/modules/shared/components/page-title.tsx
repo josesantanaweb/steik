@@ -21,7 +21,7 @@ export const PageTitle = ({
       {...props}
     >
       {showBackButton && <BackButton />}
-      <h1 className="min-w-0 flex-1 text-xl leading-7 font-bold text-white">
+      <h1 className="min-w-0 flex-1 text-xl leading-7 font-semibold text-white">
         {title}
       </h1>
       {action}

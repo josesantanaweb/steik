@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, type ReactElement } from "react";
-import { MATCHES_PAGE_TITLE } from "@/constants";
+import { PAGE_TITLES } from "@/constants";
 import { PageTitle } from "@/modules/shared/components";
 import {
   MatchList,
@@ -45,7 +45,7 @@ export default function MatchesPage(): ReactElement {
 
   return (
     <>
-      <PageTitle title={MATCHES_PAGE_TITLE} />
+      <PageTitle title={PAGE_TITLES.MATCHES} />
       <MatchesDateTabs
         days={days}
         activeDateKey={activeDateKey}

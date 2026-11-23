@@ -2,3 +2,8 @@ export * from "./matches-date-tabs";
 export * from "./matches-league-pills";
 export * from "./match-card";
 export * from "./match-list";
+export * from "./league-logo";
+export * from "./match-team-side";
+export * from "./odds-grid";
+export * from "./upcoming-match-card";
+export * from "./upcoming-matches";

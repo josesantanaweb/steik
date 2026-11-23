@@ -4,6 +4,12 @@ import type { ReactElement } from "react";
 import { cn } from "@/modules/shared/utils/cn";
 import { FormResult, type FormResult as Result } from "@/modules/teams/types";
 
+const FORM_BAR_STYLES: Record<Result, string> = {
+  [FormResult.WIN]: "bg-success",
+  [FormResult.LOSS]: "bg-error",
+  [FormResult.DRAW]: "bg-stroke",
+};
+
 interface TeamFormBarsProps {
   results: Result[];
   className?: string;
@@ -25,10 +31,7 @@ export const TeamFormBars = ({
         <span
           key={index}
           aria-hidden="true"
-          className={cn(
-            "h-5 w-1.5 rounded-full",
-            result === FormResult.WIN ? "bg-success" : "bg-error",
-          )}
+          className={cn("h-5 w-1.5 rounded-full", FORM_BAR_STYLES[result])}
         />
       ))}
     </div>

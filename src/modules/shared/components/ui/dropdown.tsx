@@ -125,7 +125,7 @@ export function Dropdown<T extends Record<string, unknown>>({
         {label && (
           <span
             className={cn(
-              "text-sm font-bold uppercase",
+              "text-sm font-semibold uppercase",
               error ? "text-error" : "text-white"
             )}
           >
