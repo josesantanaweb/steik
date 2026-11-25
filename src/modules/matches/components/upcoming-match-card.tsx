@@ -32,7 +32,7 @@ export const UpcomingMatchCard = ({
       />
 
       <div className="flex w-full items-center justify-between">
-        <div className="pointer-events-none flex items-center gap-2">
+        <div className="pointer-events-none flex items-center gap-1">
           <LeagueLogo
             src={MATCH_LEAGUE_LOGOS[match.league]}
             name={match.competition}

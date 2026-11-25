@@ -1,16 +1,16 @@
-import type { ReactElement } from "react";
+"use client";
+
+import { use, useState, type ReactElement } from "react";
 import { notFound } from "next/navigation";
 import { PAGE_TITLES } from "@/constants";
 import { PageTitle } from "@/modules/shared/components";
 import {
-  LeagueLogo,
-  MatchTeamSide,
-  OddsGrid,
+  MatchDetailCard,
+  MatchMarkets,
+  UpcomingMatches,
 } from "@/modules/matches/components";
-import { MATCH_LEAGUE_LOGOS } from "@/modules/matches/types";
 import {
-  formatKickoffDate,
-  formatKickoffTime,
+  getFakeUpcomingMatches,
   getMatchById,
 } from "@/modules/matches/utils";
 
@@ -18,11 +18,34 @@ interface MatchDetailPageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function MatchDetailPage({
+const UPCOMING_MATCHES = getFakeUpcomingMatches();
+
+export default function MatchDetailPage({
   params,
-}: MatchDetailPageProps): Promise<ReactElement> {
-  const { id } = await params;
+}: MatchDetailPageProps): ReactElement {
+  const { id } = use(params);
   const match = getMatchById(id);
+  const upcomingMatches = UPCOMING_MATCHES.filter(
+    (upcomingMatch) => upcomingMatch.id !== id,
+  );
+
+  const [favoriteMatchIds, setFavoriteMatchIds] = useState<Set<string>>(
+    () => new Set(),
+  );
+
+  const toggleMatchFavorite = (matchId: string): void => {
+    setFavoriteMatchIds((previous) => {
+      const next = new Set(previous);
+
+      if (next.has(matchId)) {
+        next.delete(matchId);
+      } else {
+        next.add(matchId);
+      }
+
+      return next;
+    });
+  };
 
   if (!match) {
     notFound();
@@ -32,9 +55,22 @@ export default async function MatchDetailPage({
     <>
       <PageTitle title={PAGE_TITLES.MATCH_DETAIL} showBackButton />
       <div className="flex flex-col gap-6 px-5">
-        <section className="border-stroke bg-surface flex flex-col gap-5 rounded-2xl border p-4">
-          
-        </section>
+        <MatchDetailCard
+          match={match}
+          isFavorite={favoriteMatchIds.has(match.id)}
+          onToggleFavorite={toggleMatchFavorite}
+        />
+
+        <MatchMarkets
+          odds={match.odds}
+          homeTeamName={match.homeTeam.name}
+          awayTeamName={match.awayTeam.name}
+        />
+        <UpcomingMatches
+          matches={upcomingMatches}
+          favoriteIds={favoriteMatchIds}
+          onToggleFavorite={toggleMatchFavorite}
+        />
       </div>
     </>
   );

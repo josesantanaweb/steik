@@ -32,7 +32,7 @@ export const MatchCard = ({
       />
 
       <header className="flex items-center justify-between">
-        <div className="text-body pointer-events-none flex items-center gap-2 text-sm">
+        <div className="text-body pointer-events-none flex items-center gap-1 text-sm">
           <LeagueLogo
             src={MATCH_LEAGUE_LOGOS[match.league]}
             name={match.competition}
