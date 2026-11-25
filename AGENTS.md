@@ -63,9 +63,12 @@ src/modules/<name>/
 | Module | Description |
 |---|---|
 | `auth` | JWT login / register / Google OAuth |
+| `teams` | Team catalog UI and CRUD actions backed by Prisma |
+| `leagues` | League CRUD actions backed by Prisma |
+| `matches` | Match catalog UI and CRUD actions backed by Prisma |
 | `shared` | Generic infrastructure: UI primitives, layout (`AppLayout`, `Header`, `BottomNav`), guards, stores, utils |
 
-Domain modules (bets, teams, matches, dashboard) are not created yet. See `TODO.md`.
+Domain modules for bets and dashboard are not created yet. See `TODO.md`.
 
 ### Shared infrastructure (`src/modules/shared/`)
 

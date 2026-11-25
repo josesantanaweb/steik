@@ -7,12 +7,182 @@ generator client {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String? // null si usó Google
-  name      String?
-  avatar    String?
-  googleId  String?  @unique // null si usó email/password
+  id            String             @id @default(uuid())
+  email         String             @unique
+  password      String? // null si usó Google
+  name          String?
+  avatar        String?
+  googleId      String?            @unique // null si usó email/password
+  favoriteTeams UserFavoriteTeam[]
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+}
+
+enum MatchStatus {
+  SCHEDULED
+  LIVE
+  FINISHED
+  POSTPONED
+  CANCELLED
+}
+
+enum MarketType {
+  FULL_TIME_RESULT
+  DOUBLE_CHANCE
+  TEAM_WINS_HALF
+  TOTAL_GOALS
+  HOME_TEAM_TOTAL_GOALS
+  AWAY_TEAM_TOTAL_GOALS
+}
+
+enum MarketPeriod {
+  FULL_TIME
+  FIRST_HALF
+  SECOND_HALF
+}
+
+enum MarketStatus {
+  OPEN
+  SUSPENDED
+  CLOSED
+  SETTLED
+  CANCELLED
+}
+
+model League {
+  id         String           @id @default(uuid())
+  name       String
+  slug       String           @unique
+  country    String?
+  logo       String?
+  externalId String?          @unique
+  teams      Team[]
+  matches    Match[]
+  statistics TeamStatistics[]
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+}
+
+model Team {
+  id          String             @id @default(uuid())
+  name        String
+  slug        String             @unique
+  logo        String?
+  externalId  String?            @unique
+  leagueId    String
+  league      League             @relation(fields: [leagueId], references: [id], onDelete: Restrict)
+  homeMatches Match[]            @relation("HomeTeam")
+  awayMatches Match[]            @relation("AwayTeam")
+  statistics  TeamStatistics[]
+  favoritedBy UserFavoriteTeam[]
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  @@index([leagueId])
+}
+
+model Match {
+  id         String        @id @default(uuid())
+  externalId String?       @unique
+  kickoff    DateTime
+  status     MatchStatus   @default(SCHEDULED)
+  season     String
+  round      String?
+  homeScore  Int?
+  awayScore  Int?
+  leagueId   String
+  homeTeamId String
+  awayTeamId String
+  league     League        @relation(fields: [leagueId], references: [id], onDelete: Restrict)
+  homeTeam   Team          @relation("HomeTeam", fields: [homeTeamId], references: [id], onDelete: Restrict)
+  awayTeam   Team          @relation("AwayTeam", fields: [awayTeamId], references: [id], onDelete: Restrict)
+  markets    MatchMarket[]
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+
+  @@unique([leagueId, homeTeamId, awayTeamId, kickoff])
+  @@index([leagueId, kickoff])
+  @@index([homeTeamId, kickoff])
+  @@index([awayTeamId, kickoff])
+  @@index([status, kickoff])
+}
+
+model Market {
+  id           String        @id @default(uuid())
+  type         MarketType    @unique
+  name         String
+  matchMarkets MatchMarket[]
+}
+
+model MatchMarket {
+  id        String              @id @default(uuid())
+  key       String
+  line      Decimal?            @db.Decimal(5, 2)
+  period    MarketPeriod        @default(FULL_TIME)
+  status    MarketStatus        @default(OPEN)
+  matchId   String
+  marketId  String
+  match     Match               @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  market    Market              @relation(fields: [marketId], references: [id], onDelete: Restrict)
+  options   MatchMarketOption[]
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+
+  @@unique([matchId, key])
+  @@index([marketId])
+}
+
+model MatchMarketOption {
+  id            String      @id @default(uuid())
+  code          String
+  label         String
+  odds          Decimal     @db.Decimal(6, 2)
+  sortOrder     Int         @default(0)
+  isActive      Boolean     @default(true)
+  matchMarketId String
+  matchMarket   MatchMarket @relation(fields: [matchMarketId], references: [id], onDelete: Cascade)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([matchMarketId, code])
+}
+
+model TeamStatistics {
+  id                       String   @id @default(uuid())
+  season                   String
+  matchesPlayed            Int      @default(0)
+  wins                     Int      @default(0)
+  draws                    Int      @default(0)
+  losses                   Int      @default(0)
+  goalsFor                 Int      @default(0)
+  goalsAgainst             Int      @default(0)
+  cleanSheets              Int      @default(0)
+  goalsPerGame             Float    @default(0)
+  shotsOnTargetPerGame     Float    @default(0)
+  foulsPerGame             Float    @default(0)
+  yellowCardsPerGame       Float    @default(0)
+  possessionPercentage     Float    @default(0)
+  passCompletionPercentage Float    @default(0)
+  cornersPerGame           Float    @default(0)
+  savesPerGame             Float    @default(0)
+  teamId                   String
+  leagueId                 String
+  team                     Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  league                   League   @relation(fields: [leagueId], references: [id], onDelete: Restrict)
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+
+  @@unique([teamId, leagueId, season])
+  @@index([leagueId, season])
+}
+
+model UserFavoriteTeam {
+  userId    String
+  teamId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  team      Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+
+  @@id([userId, teamId])
+  @@index([teamId])
 }

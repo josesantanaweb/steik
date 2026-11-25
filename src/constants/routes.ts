@@ -17,4 +17,10 @@ export const API_ROUTES = {
     REGISTER: "/api/auth/register",
     GOOGLE: "/api/auth/google",
   },
+  LEAGUES: "/api/leagues",
+  LEAGUE_DETAIL: (id: string) => `/api/leagues/${id}`,
+  TEAMS: "/api/teams",
+  TEAM_DETAIL: (id: string) => `/api/teams/${id}`,
+  MATCHES: "/api/matches",
+  MATCH_DETAIL: (id: string) => `/api/matches/${id}`,
 };
