@@ -1,0 +1,37 @@
+[
+  {
+    "name": "La Liga",
+    "slug": "la-liga",
+    "country": "españa",
+    "logo": "la-liga.png",
+    "externalId": null
+  },
+  {
+    "name": "Bundesliga",
+    "slug": "bundesliga",
+    "country": "alemania",
+    "logo": "bundesliga.png",
+    "externalId": null
+  },
+  {
+    "name": "Premier League",
+    "slug": "premier-league",
+    "country": "inglaterra",
+    "logo": "premier-league.png",
+    "externalId": null
+  },
+  {
+    "name": "Serie A",
+    "slug": "serie-a",
+    "country": "italia",
+    "logo": "serie-a.png",
+    "externalId": null
+  },
+    {
+    "name": "Ligue 1",
+    "slug": "ligue-1",
+    "country": "francia",
+    "logo": "ligue-1.png",
+    "externalId": null
+  }
+]

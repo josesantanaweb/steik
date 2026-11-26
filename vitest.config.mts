@@ -14,7 +14,7 @@ export default defineConfig({
   },
   test: {
     environment: "jsdom",
-    include: ["src/**/*.test.{ts,tsx}"],
+    include: ["src/**/*.test.{ts,tsx}", "prisma/**/*.test.mjs"],
     setupFiles: ["./src/test/setup.ts"],
     coverage: {
       provider: "v8",

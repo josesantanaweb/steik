@@ -1,0 +1,142 @@
+[
+  {
+    "name": "Arsenal",
+    "slug": "arsenal",
+    "leagueSlug": "premier-league",
+    "logo": "arsenal.png",
+    "externalId": null
+  },
+  {
+    "name": "Manchester City",
+    "slug": "manchester-city",
+    "leagueSlug": "premier-league",
+    "logo": "manchester-city.png",
+    "externalId": null
+  },
+  {
+    "name": "Brighton",
+    "slug": "brighton",
+    "leagueSlug": "premier-league",
+    "logo": "brighton.png",
+    "externalId": null
+  },
+  {
+    "name": "Liverpool",
+    "slug": "liverpool",
+    "leagueSlug": "premier-league",
+    "logo": "liverpool.png",
+    "externalId": null
+  },
+  {
+    "name": "Bournemouth",
+    "slug": "bournemouth",
+    "leagueSlug": "premier-league",
+    "logo": "bournemouth.png",
+    "externalId": null
+  },
+  {
+    "name": "Como",
+    "slug": "como",
+    "leagueSlug": "serie-a",
+    "logo": "como.png",
+    "externalId": null
+  },
+  {
+    "name": "Lazio",
+    "slug": "lazio",
+    "leagueSlug": "serie-a",
+    "logo": "lazio.png",
+    "externalId": null
+  },
+  {
+    "name": "Inter",
+    "slug": "inter",
+    "leagueSlug": "serie-a",
+    "logo": "inter.png",
+    "externalId": null
+  },
+  {
+    "name": "AC Milan",
+    "slug": "AC Milan",
+    "leagueSlug": "serie-a",
+    "logo": "ac-milan.png",
+    "externalId": null
+  },
+  {
+    "name": "Juventus",
+    "slug": "Juventus",
+    "leagueSlug": "serie-a",
+    "logo": "juventus.png",
+    "externalId": null
+  },
+  {
+    "name": "Real Madrid",
+    "slug": "real-madrid",
+    "leagueSlug": "la-liga",
+    "logo": "real-madrid.png",
+    "externalId": null
+  },
+  {
+    "name": "Barcelona",
+    "slug": "barcelona",
+    "leagueSlug": "la-liga",
+    "logo": "barcelona.png",
+    "externalId": null
+  },
+  {
+    "name": "Real Betis",
+    "slug": "real-betis",
+    "leagueSlug": "la-liga",
+    "logo": "real-betis.png",
+    "externalId": null
+  },
+  {
+    "name": "Atlético de Madrid",
+    "slug": "atletico-de-madrid",
+    "leagueSlug": "la-liga",
+    "logo": "atletico-de-madrid.png",
+    "externalId": null
+  },
+  {
+    "name": "Roma",
+    "slug": "roma",
+    "leagueSlug": "serie-a",
+    "logo": "roma.png",
+    "externalId": null
+  },
+  {
+    "name": "Borussia Dortmund",
+    "slug": "borussia-dortmund",
+    "leagueSlug": "bundesliga",
+    "logo": "borussia-dortmund.png",
+    "externalId": null
+  },
+  {
+    "name": "Bayern Múnich",
+    "slug": "bayern-munich",
+    "leagueSlug": "bundesliga",
+    "logo": "bayern-munich.png",
+    "externalId": null
+  },
+  {
+    "name": "Friburgo",
+    "slug": "friburgo",
+    "leagueSlug": "bundesliga",
+    "logo": "friburgo.png",
+    "externalId": null
+  },
+  {
+    "name": "RB Leipzig",
+    "slug": "rb-leipzig",
+    "leagueSlug": "bundesliga",
+    "logo": "rb-leipzig.png",
+    "externalId": null
+  },
+  {
+    "name": "Bayer Leverkusen",
+    "slug": "bayer-leverkusen",
+    "leagueSlug": "bundesliga",
+    "logo": "bayer-leverkusen.png",
+    "externalId": null
+  }
+]
