@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { ROUTES } from "@/constants";
 import { FavoriteButton } from "@/modules/shared/components/ui";
-import { TEAMS_LEAGUES, type Team } from "@/modules/teams/types";
+import type { Team } from "@/modules/teams/types";
 import { getFakeForm } from "@/modules/teams/utils";
 import { TeamLogo } from "./team-logo";
 import { TeamFormBars } from "./team-form-bars";
@@ -21,9 +21,6 @@ export const TeamCard = ({
   isFavorite,
   onToggleFavorite,
 }: TeamCardProps): ReactElement => {
-  const leagueLabel =
-    TEAMS_LEAGUES.find((league) => league.key === team.league)?.label ?? "";
-
   return (
     <article className="border-stroke bg-surface relative flex items-center gap-4 rounded-2xl border p-4">
       <Link
@@ -40,7 +37,7 @@ export const TeamCard = ({
 
       <div className="pointer-events-none flex min-w-0 flex-1 flex-col">
         <h2 className="truncate font-semibold text-white">{team.name}</h2>
-        <span className="text-body truncate text-sm">{leagueLabel}</span>
+        <span className="text-body truncate text-sm">{team.league.name}</span>
       </div>
 
       <TeamFormBars

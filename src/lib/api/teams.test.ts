@@ -1,32 +1,62 @@
-import { describe, expect, it, vi, beforeEach } from "vitest";
-import { ASSETS } from "@/constants";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { API_ROUTES, CATALOG_PAGE_SIZE } from "@/constants";
 import { getTeams } from "./teams";
+
+const teamRecord = {
+  id: "arsenal-id",
+  name: "Arsenal",
+  logo: "arsenal.png",
+  league: { id: "premier-league-id", name: "Premier League" },
+};
+
+const paginatedResponse = {
+  success: true,
+  status: 200,
+  data: {
+    data: [teamRecord],
+    total: 1,
+    limit: CATALOG_PAGE_SIZE,
+    offset: 0,
+    nextPage: null,
+  },
+};
 
 describe("getTeams", () => {
   beforeEach(() => {
     vi.unstubAllGlobals();
   });
 
-  it("fetches the teams JSON from public data", async () => {
-    const teams = [{ id: "arsenal", name: "Arsenal" }];
+  it("fetches and maps the teams from the API", async () => {
     const fetchMock = vi.fn().mockResolvedValue({
       ok: true,
-      json: async () => teams,
+      json: async () => paginatedResponse,
     });
     vi.stubGlobal("fetch", fetchMock);
 
-    await expect(getTeams()).resolves.toEqual(teams);
-    expect(fetchMock).toHaveBeenCalledWith(ASSETS.DATA.TEAMS);
+    await expect(getTeams()).resolves.toEqual([
+      {
+        ...teamRecord,
+        logo: "/images/teams/arsenal.png",
+      },
+    ]);
+    expect(fetchMock).toHaveBeenCalledWith(
+      `${API_ROUTES.TEAMS}?limit=${CATALOG_PAGE_SIZE}`,
+    );
   });
 
-  it("throws a Spanish error when the request fails", async () => {
+  it("throws the API error when the request fails", async () => {
     vi.stubGlobal(
       "fetch",
-      vi.fn().mockResolvedValue({ ok: false, json: async () => ({}) }),
+      vi.fn().mockResolvedValue({
+        ok: false,
+        json: async () => ({
+          success: false,
+          status: 500,
+          message: "Error al obtener los equipos",
+        }),
+      }),
     );
 
-    await expect(getTeams()).rejects.toThrow(
-      "No se pudieron cargar los equipos",
-    );
+    await expect(getTeams()).rejects.toThrow("Error al obtener los equipos");
   });
 });

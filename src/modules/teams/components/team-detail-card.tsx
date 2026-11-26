@@ -2,7 +2,7 @@
 
 import type { ReactElement } from "react";
 import { FavoriteButton } from "@/modules/shared/components/ui";
-import { TEAMS_LEAGUES, type Team } from "@/modules/teams/types";
+import type { Team } from "@/modules/teams/types";
 import { TeamLogo } from "./team-logo";
 
 interface TeamDetailCardProps {
@@ -18,9 +18,6 @@ export const TeamDetailCard = ({
   onToggleFavorite,
   leagueLogo,
 }: TeamDetailCardProps): ReactElement => {
-  const leagueLabel =
-    TEAMS_LEAGUES.find((league) => league.key === team.league)?.label ?? "";
-
   return (
     <article className="border-stroke bg-surface relative flex h-44 flex-col items-center justify-center rounded-xl border p-4">
       <div className="absolute inset-x-0 top-0 flex items-center justify-between px-3 py-3">
@@ -30,13 +27,13 @@ export const TeamDetailCard = ({
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={leagueLogo}
-                alt={leagueLabel}
+                alt={team.league.name}
                 loading="lazy"
                 className="size-full object-contain p-1"
               />
             </div>
           )}
-          <p className="text-body text-base">{leagueLabel}</p>
+          <p className="text-body text-base">{team.league.name}</p>
         </div>
 
         <FavoriteButton

@@ -1,13 +1,21 @@
-import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { TeamsLeague } from "@/modules/teams/types";
+import { describe, expect, it, vi } from "vitest";
+import type { League } from "@/modules/leagues/types";
+import { ALL_LEAGUES } from "@/modules/teams/types";
 import { TeamsLeaguePills } from "./teams-league-pills";
+
+const leagues: League[] = [
+  { id: "premier-league", name: "Premier League" },
+  { id: "la-liga", name: "La Liga" },
+  { id: "serie-a", name: "Serie A" },
+];
 
 describe("TeamsLeaguePills", () => {
   it("renders the filter button", () => {
     render(
       <TeamsLeaguePills
-        activeLeague={TeamsLeague.ALL}
+        leagues={leagues}
+        activeLeague={ALL_LEAGUES}
         onLeagueChange={vi.fn()}
       />,
     );
@@ -15,22 +23,16 @@ describe("TeamsLeaguePills", () => {
     expect(screen.getByRole("button", { name: "Filtros" })).toBeInTheDocument();
   });
 
-  it("renders one pill per league", () => {
+  it("renders the all option and one pill per database league", () => {
     render(
       <TeamsLeaguePills
-        activeLeague={TeamsLeague.ALL}
+        leagues={leagues}
+        activeLeague={ALL_LEAGUES}
         onLeagueChange={vi.fn()}
       />,
     );
 
-    for (const label of [
-      "Todos",
-      "Premier League",
-      "La Liga",
-      "Serie A",
-      "Bundesliga",
-      "Ligue 1",
-    ]) {
+    for (const label of ["Todos", ...leagues.map((league) => league.name)]) {
       expect(screen.getByRole("button", { name: label })).toBeInTheDocument();
     }
   });
@@ -38,7 +40,8 @@ describe("TeamsLeaguePills", () => {
   it("marks only the active league as pressed", () => {
     render(
       <TeamsLeaguePills
-        activeLeague={TeamsLeague.LA_LIGA}
+        leagues={leagues}
+        activeLeague="la-liga"
         onLeagueChange={vi.fn()}
       />,
     );
@@ -53,25 +56,27 @@ describe("TeamsLeaguePills", () => {
     );
   });
 
-  it("calls onLeagueChange with the selected league", () => {
+  it("calls onLeagueChange with the selected league id", () => {
     const onLeagueChange = vi.fn();
     render(
       <TeamsLeaguePills
-        activeLeague={TeamsLeague.ALL}
+        leagues={leagues}
+        activeLeague={ALL_LEAGUES}
         onLeagueChange={onLeagueChange}
       />,
     );
 
-    fireEvent.click(screen.getByRole("button", { name: "Bundesliga" }));
+    fireEvent.click(screen.getByRole("button", { name: "Serie A" }));
 
-    expect(onLeagueChange).toHaveBeenCalledWith(TeamsLeague.BUNDESLIGA);
+    expect(onLeagueChange).toHaveBeenCalledWith("serie-a");
   });
 
   it("calls onFilterClick when the filter button is clicked", () => {
     const onFilterClick = vi.fn();
     render(
       <TeamsLeaguePills
-        activeLeague={TeamsLeague.ALL}
+        leagues={leagues}
+        activeLeague={ALL_LEAGUES}
         onLeagueChange={vi.fn()}
         onFilterClick={onFilterClick}
       />,

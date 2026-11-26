@@ -1,17 +1,32 @@
 import { describe, expect, it } from "vitest";
-import { TeamsLeague, TeamsTab, type Team } from "../types";
+import { ALL_LEAGUES, TeamsTab, type Team } from "../types";
 import { filterTeams } from "./filter-teams";
 
 const teams: Team[] = [
-  { id: "real-madrid", name: "Real Madrid", league: "LA_LIGA", logo: "" },
-  { id: "arsenal", name: "Arsenal", league: "PREMIER_LEAGUE", logo: "" },
-  { id: "roma", name: "Roma", league: "SERIE_A", logo: "" },
+  {
+    id: "real-madrid",
+    name: "Real Madrid",
+    league: { id: "la-liga", name: "La Liga" },
+    logo: "",
+  },
+  {
+    id: "arsenal",
+    name: "Arsenal",
+    league: { id: "premier-league", name: "Premier League" },
+    logo: "",
+  },
+  {
+    id: "roma",
+    name: "Roma",
+    league: { id: "serie-a", name: "Serie A" },
+    logo: "",
+  },
 ];
 
 describe("filterTeams", () => {
   it("returns every team for the ALL league and ALL tab", () => {
     const result = filterTeams(teams, {
-      league: TeamsLeague.ALL,
+      league: ALL_LEAGUES,
       tab: TeamsTab.ALL,
       favoriteIds: new Set(),
     });
@@ -19,9 +34,9 @@ describe("filterTeams", () => {
     expect(result).toHaveLength(3);
   });
 
-  it("filters by league", () => {
+  it("filters by league id", () => {
     const result = filterTeams(teams, {
-      league: TeamsLeague.LA_LIGA,
+      league: "la-liga",
       tab: TeamsTab.ALL,
       favoriteIds: new Set(),
     });
@@ -31,7 +46,7 @@ describe("filterTeams", () => {
 
   it("returns only favorites on the FAVORITES tab", () => {
     const result = filterTeams(teams, {
-      league: TeamsLeague.ALL,
+      league: ALL_LEAGUES,
       tab: TeamsTab.FAVORITES,
       favoriteIds: new Set(["arsenal", "roma"]),
     });
@@ -41,7 +56,7 @@ describe("filterTeams", () => {
 
   it("returns nothing on the FAVORITES tab when there are no favorites", () => {
     const result = filterTeams(teams, {
-      league: TeamsLeague.ALL,
+      league: ALL_LEAGUES,
       tab: TeamsTab.FAVORITES,
       favoriteIds: new Set(),
     });
@@ -51,7 +66,7 @@ describe("filterTeams", () => {
 
   it("combines the league and favorites filters", () => {
     const result = filterTeams(teams, {
-      league: TeamsLeague.PREMIER_LEAGUE,
+      league: "premier-league",
       tab: TeamsTab.FAVORITES,
       favoriteIds: new Set(["real-madrid", "arsenal"]),
     });
@@ -66,12 +81,12 @@ describe("filterTeams", () => {
         {
           id: "atletico",
           name: "Atlético de Madrid",
-          league: "LA_LIGA",
+          league: { id: "la-liga", name: "La Liga" },
           logo: "",
         },
       ],
       {
-        league: TeamsLeague.ALL,
+        league: ALL_LEAGUES,
         tab: TeamsTab.ALL,
         favoriteIds: new Set(),
         query: "ATLETICO",
@@ -83,7 +98,7 @@ describe("filterTeams", () => {
 
   it("returns every team when the query is blank", () => {
     const result = filterTeams(teams, {
-      league: TeamsLeague.ALL,
+      league: ALL_LEAGUES,
       tab: TeamsTab.ALL,
       favoriteIds: new Set(),
       query: "   ",
@@ -94,7 +109,7 @@ describe("filterTeams", () => {
 
   it("combines the name query with the league filter", () => {
     const result = filterTeams(teams, {
-      league: TeamsLeague.SERIE_A,
+      league: "serie-a",
       tab: TeamsTab.ALL,
       favoriteIds: new Set(),
       query: "real",

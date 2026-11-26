@@ -6,7 +6,7 @@ import { TeamDetailCard } from "./team-detail-card";
 const team: Team = {
   id: "real-madrid",
   name: "Real Madrid",
-  league: "LA_LIGA",
+  league: { id: "la-liga", name: "La Liga" },
   logo: "/images/teams/real-madrid.png",
 };
 

@@ -4,8 +4,8 @@ import type { Team } from "@/modules/teams/types";
 import { TeamList } from "./team-list";
 
 const teams: Team[] = [
-  { id: "arsenal", name: "Arsenal", league: "PREMIER_LEAGUE", logo: "" },
-  { id: "roma", name: "Roma", league: "SERIE_A", logo: "" },
+  { id: "arsenal", name: "Arsenal", league: { id: "premier-league", name: "Premier League" }, logo: "" },
+  { id: "roma", name: "Roma", league: { id: "serie-a", name: "Serie A" }, logo: "" },
 ];
 
 describe("TeamList", () => {

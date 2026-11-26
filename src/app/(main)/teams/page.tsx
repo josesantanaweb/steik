@@ -1,24 +1,35 @@
 "use client";
 
 import { useMemo, useState, type ReactElement } from "react";
+import { useLeagues } from "@/modules/leagues/hooks";
 import {
   TeamList,
   TeamsHeader,
   TeamsLeaguePills,
 } from "@/modules/teams/components";
 import { useTeams } from "@/modules/teams/hooks";
-import { TeamsLeague, TeamsTab, type Team } from "@/modules/teams/types";
+import { ALL_LEAGUES, TeamsTab, type Team } from "@/modules/teams/types";
 import { filterTeams } from "@/modules/teams/utils";
 
 export default function TeamsPage(): ReactElement {
   const [activeTab, setActiveTab] = useState<TeamsTab>(TeamsTab.ALL);
-  const [activeLeague, setActiveLeague] = useState<TeamsLeague>(
-    TeamsLeague.ALL,
-  );
+  const [activeLeague, setActiveLeague] = useState<string>(ALL_LEAGUES);
   const [favoriteIds, setFavoriteIds] = useState<Set<string>>(() => new Set());
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const { data: teams, isLoading, isError } = useTeams();
+  const {
+    data: teams,
+    isLoading: isTeamsLoading,
+    isError: isTeamsError,
+  } = useTeams();
+  const {
+    data: leagues,
+    isLoading: isLeaguesLoading,
+    isError: isLeaguesError,
+  } = useLeagues();
+
+  const isLoading = isTeamsLoading || isLeaguesLoading;
+  const isError = isTeamsError || isLeaguesError;
 
   const visibleTeams: Team[] = useMemo(
     () =>
@@ -61,6 +72,7 @@ export default function TeamsPage(): ReactElement {
         onSearchChange={setSearchQuery}
       />
       <TeamsLeaguePills
+        leagues={leagues ?? []}
         activeLeague={activeLeague}
         onLeagueChange={setActiveLeague}
       />

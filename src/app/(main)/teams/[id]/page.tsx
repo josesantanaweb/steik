@@ -12,17 +12,12 @@ import {
   TeamDetailCard,
   TeamStatistics,
 } from "@/modules/teams/components";
-import {
-  FormResult,
-  TEAM_STATISTICS,
-  TeamsLeague,
-  type Team,
-} from "@/modules/teams/types";
+import { FormResult, TEAM_STATISTICS, type Team } from "@/modules/teams/types";
 
 const TEAM: Team = {
   id: "real-madrid",
   name: "Real Madrid",
-  league: TeamsLeague.LA_LIGA,
+  league: { id: "la-liga", name: "La Liga" },
   logo: "/images/teams/real-madrid.png",
 };
 

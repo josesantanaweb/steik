@@ -2,16 +2,19 @@
 
 import type { ReactElement } from "react";
 import { SlidersHorizontal } from "lucide-react";
+import type { League } from "@/modules/leagues/types";
 import { Pill } from "@/modules/shared/components/ui";
-import { TEAMS_LEAGUES, type TeamsLeague } from "@/modules/teams/types";
+import { ALL_LEAGUES } from "@/modules/teams/types";
 
 interface TeamsLeaguePillsProps {
-  activeLeague: TeamsLeague;
-  onLeagueChange: (league: TeamsLeague) => void;
+  leagues: League[];
+  activeLeague: string;
+  onLeagueChange: (league: string) => void;
   onFilterClick?: () => void;
 }
 
 export const TeamsLeaguePills = ({
+  leagues,
   activeLeague,
   onLeagueChange,
   onFilterClick,
@@ -28,17 +31,24 @@ export const TeamsLeaguePills = ({
       </button>
 
       <div className="flex min-w-0 flex-1 gap-2 overflow-x-auto pr-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {TEAMS_LEAGUES.map((league) => {
-          const isActive = league.key === activeLeague;
+        <Pill
+          active={activeLeague === ALL_LEAGUES}
+          aria-pressed={activeLeague === ALL_LEAGUES}
+          onClick={() => onLeagueChange(ALL_LEAGUES)}
+        >
+          Todos
+        </Pill>
+        {leagues.map((league) => {
+          const isActive = league.id === activeLeague;
 
           return (
             <Pill
-              key={league.key}
+              key={league.id}
               active={isActive}
               aria-pressed={isActive}
-              onClick={() => onLeagueChange(league.key)}
+              onClick={() => onLeagueChange(league.id)}
             >
-              {league.label}
+              {league.name}
             </Pill>
           );
         })}

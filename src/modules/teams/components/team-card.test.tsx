@@ -6,7 +6,7 @@ import { TeamCard } from "./team-card";
 const team: Team = {
   id: "arsenal",
   name: "Arsenal",
-  league: "PREMIER_LEAGUE",
+  league: { id: "premier-league", name: "Premier League" },
   logo: "/images/teams/arsenal.png",
 };
 

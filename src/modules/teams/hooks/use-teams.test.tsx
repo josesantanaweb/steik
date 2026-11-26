@@ -25,7 +25,12 @@ describe("useTeams", () => {
 
   it("returns the teams from the API", async () => {
     vi.mocked(getTeams).mockResolvedValue([
-      { id: "roma", name: "Roma", league: "SERIE_A", logo: "" },
+      {
+        id: "roma",
+        name: "Roma",
+        league: { id: "serie-a", name: "Serie A" },
+        logo: "",
+      },
     ]);
 
     const { result } = renderHook(() => useTeams(), { wrapper });

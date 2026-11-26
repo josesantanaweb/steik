@@ -1,13 +1,8 @@
-import {
-  TeamsLeague,
-  TeamsTab,
-  type Team,
-  type TeamsLeague as League,
-} from "../types";
+import { ALL_LEAGUES, TeamsTab, type Team } from "../types";
 import { normalizeText } from "@/modules/shared/utils/normalize-text";
 
 interface FilterTeamsOptions {
-  league: League;
+  league: string;
   tab: TeamsTab;
   favoriteIds: ReadonlySet<string>;
   query?: string;
@@ -20,7 +15,8 @@ export const filterTeams = (
   const normalizedQuery = normalizeText(query);
 
   return teams.filter((team) => {
-    const matchesLeague = league === TeamsLeague.ALL || team.league === league;
+    const matchesLeague =
+      league === ALL_LEAGUES || team.league.id === league;
     const matchesTab = tab === TeamsTab.ALL || favoriteIds.has(team.id);
     const matchesQuery =
       normalizedQuery === "" ||
